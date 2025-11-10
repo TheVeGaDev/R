@@ -53,6 +53,7 @@ class MovingCompany {
         this.typeWriterEffect();
         this.loadServices();
         this.setupEventListeners();
+        this.setupBottomNavigation();
         this.initializeCounters();
         this.setupNavigation();
         
@@ -186,15 +187,85 @@ class MovingCompany {
         });
     }
 
-    // Like C++ scroll functionality
+    // Like C++ optimized button handlers
+    setupBottomNavigation() {
+        const bottomNavButtons = document.querySelectorAll('.bottom-nav-btn');
+        
+        bottomNavButtons.forEach(btn => {
+            // Remove any existing event listeners
+            const newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
+            
+            // Add optimized click handler
+            newBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                this.handleBottomNavClick(newBtn);
+            }, { passive: true });
+        });
+    }
+
+    // Like C++ efficient event handling
+    handleBottomNavClick(button) {
+        const text = button.querySelector('span').textContent;
+        
+        // Add active state
+        this.setActiveBottomNav(button);
+        
+        switch(text) {
+            case 'الرئيسية':
+                this.scrollToSection('#home');
+                break;
+            case 'خدماتنا':
+                this.scrollToSection('#services');
+                break;
+            case 'اتصل بنا':
+                this.scrollToSection('#contact');
+                break;
+            case 'موقعنا':
+                this.scrollToSection('#location');
+                break;
+            case 'واتساب':
+                // Already handled by link
+                break;
+        }
+        
+        // Like C++ performance logging
+        console.log('🎯 زر الضغط:', text);
+    }
+
+    // Like C++ state management
+    setActiveBottomNav(activeButton) {
+        const buttons = document.querySelectorAll('.bottom-nav-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        activeButton.classList.add('active');
+    }
+
+    // Like C++ scroll optimization
     scrollToSection(sectionId) {
         const targetElement = document.querySelector(sectionId);
         if (targetElement) {
+            // Use smooth scroll with performance optimization
             targetElement.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
+            
+            // Prevent multiple rapid clicks
+            this.disableButtonsTemporarily();
         }
+    }
+
+    // Like C++ debouncing function
+    disableButtonsTemporarily() {
+        const buttons = document.querySelectorAll('.btn, .bottom-nav-btn');
+        buttons.forEach(btn => {
+            btn.style.pointerEvents = 'none';
+            setTimeout(() => {
+                btn.style.pointerEvents = 'auto';
+            }, 500);
+        });
     }
 
     // Like C++ counter initialization

@@ -210,5 +210,53 @@ const AnimationUtils = {
     }
 };
 
+// Like C++ performance optimization class
+class PerformanceOptimizer {
+    constructor() {
+        this.initOptimizations();
+    }
+
+    initOptimizations() {
+        // Optimize CSS transitions
+        this.optimizeAnimations();
+        // Preload critical resources
+        this.preloadResources();
+    }
+
+    optimizeAnimations() {
+        // Force GPU acceleration
+        const styles = `
+            .btn, .bottom-nav-btn, .quick-btn, .service-card, .contact-item {
+                transform: translateZ(0);
+                backface-visibility: hidden;
+                perspective: 1000px;
+            }
+        `;
+        
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = styles;
+        document.head.appendChild(styleSheet);
+    }
+
+    preloadResources() {
+        // Preload critical resources
+        const preloadLinks = [
+            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+            'https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap'
+        ];
+
+        preloadLinks.forEach(href => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = href;
+            link.as = 'style';
+            document.head.appendChild(link);
+        });
+    }
+}
+
 // Like C++ global initialization
 const visualEffects = new VisualEffects();
+
+// Initialize performance optimizations
+const performanceOptimizer = new PerformanceOptimizer();
