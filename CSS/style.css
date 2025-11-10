@@ -23,6 +23,7 @@ body {
     color: #333;
     background: linear-gradient(135deg, #b71c1c 0%, #7b1fa2 100%);
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* Main Container - Like C++ main function */
@@ -54,6 +55,11 @@ body {
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
     animation: shine 3s infinite;
+}
+
+.promo-emoji {
+    display: inline-block;
+    animation: truckDrive 2s ease-in-out infinite;
 }
 
 @keyframes shine {
@@ -401,6 +407,164 @@ nav ul li a:hover {
     animation: float 6s ease-in-out infinite;
 }
 
+/* Emoji Container */
+.emoji-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.emoji-car {
+    position: absolute;
+    font-size: 4rem;
+    top: 15%;
+    right: -100px;
+    animation: truckDrive 15s linear infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.emoji-box {
+    position: absolute;
+    font-size: 3rem;
+    top: 30%;
+    left: 10%;
+    animation: zoomInOut 4s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.emoji-tools {
+    position: absolute;
+    font-size: 2.5rem;
+    top: 60%;
+    right: 15%;
+    animation: rotateTool 5s linear infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.emoji-shield {
+    position: absolute;
+    font-size: 3rem;
+    top: 75%;
+    left: 20%;
+    animation: bounceShield 3s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.emoji-clean {
+    position: absolute;
+    font-size: 2.8rem;
+    top: 40%;
+    right: 25%;
+    animation: sweepClean 6s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.emoji-office {
+    position: absolute;
+    font-size: 3.5rem;
+    top: 20%;
+    left: 25%;
+    animation: buildingPulse 8s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Emoji Animations */
+@keyframes truckDrive {
+    0% {
+        transform: translateX(100px) translateY(0px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(calc(-100vw - 200px)) translateY(20px) rotate(-5deg);
+        opacity: 0;
+    }
+}
+
+@keyframes zoomInOut {
+    0%, 100% {
+        transform: scale(1) translateY(0px);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.3) translateY(-10px);
+        opacity: 1;
+    }
+}
+
+@keyframes rotateTool {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    25% {
+        transform: rotate(90deg) scale(1.1);
+    }
+    50% {
+        transform: rotate(180deg) scale(1);
+    }
+    75% {
+        transform: rotate(270deg) scale(1.1);
+    }
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes bounceShield {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    25% {
+        transform: translateY(-15px) scale(1.1);
+    }
+    50% {
+        transform: translateY(0px) scale(1);
+    }
+    75% {
+        transform: translateY(-10px) scale(1.05);
+    }
+}
+
+@keyframes sweepClean {
+    0%, 100% {
+        transform: translateX(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateX(20px) rotate(15deg);
+    }
+    50% {
+        transform: translateX(-10px) rotate(-10deg);
+    }
+    75% {
+        transform: translateX(15px) rotate(10deg);
+    }
+}
+
+@keyframes buildingPulse {
+    0%, 100% {
+        transform: scale(1) translateY(0px);
+        opacity: 0.8;
+    }
+    33% {
+        transform: scale(1.1) translateY(-5px);
+        opacity: 1;
+    }
+    66% {
+        transform: scale(0.95) translateY(3px);
+        opacity: 0.9;
+    }
+}
+
 /* Animations - Like C++ algorithms */
 @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -450,6 +614,20 @@ nav ul li a:hover {
 
     .contact-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* Hide some emojis on mobile for better performance */
+    .emoji-box,
+    .emoji-tools,
+    .emoji-shield,
+    .emoji-clean,
+    .emoji-office {
+        display: none;
+    }
+    
+    .emoji-car {
+        font-size: 2.5rem;
+        animation-duration: 10s;
     }
 }
 
