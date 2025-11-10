@@ -11,6 +11,31 @@
     --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* إصلاح فوري للناڤبار - يطبق أولاً */
+nav ul {
+    display: flex !important;
+    flex-direction: row !important;
+    list-style: none !important;
+    gap: 2rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+nav ul li {
+    display: inline-block !important;
+}
+
+.header-content {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-direction: row !important;
+}
+
+.menu-toggle {
+    display: none !important;
+}
+
 /* تحسينات عامة للتصميم */
 * {
     margin: 0;
@@ -680,4 +705,26 @@ nav ul li a:hover {
     transform: translateZ(0);
     will-change: transform;
     backface-visibility: hidden;
+}
+
+/* تأثيرات إضافية */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
 }
